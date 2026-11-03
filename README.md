@@ -41,6 +41,7 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 | 32 | Unified implementation master system prompt (both repositories) |
 | 33 | External stack and provider requirements register |
 | 34 | AVORLUNE content system architecture and TikTok editorial pillars |
+| 35 | First TikTok content micro-system and Genspark master prompt |
 
 ## Start here
 1. [Product & architecture](docs/00-product-and-architecture-blueprint.md)
@@ -61,6 +62,7 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 16. [Unified implementation master system prompt](docs/32-unified-implementation-master-system-prompt.md)
 17. [External stack & provider requirements register](docs/33-external-stack-and-provider-requirements-register.md)
 18. [Content system architecture & TikTok editorial pillars](docs/34-avorlune-content-system-architecture-and-tiktok-editorial-pillars.md)
+19. [First TikTok content micro-system & Genspark prompt](docs/35-avorlune-first-content-micro-system-and-genspark-master-prompt.md)
 
 ## Provider request process
 Whenever implementation needs an external account, API, LLM, agent framework, coding agent, search, chat, media, monitoring or automation provider, record the exact need and owner action in [docs/33](docs/33-external-stack-and-provider-requirements-register.md). Investigation is allowed; connecting accounts, adding credentials, paid usage and production activation still require explicit approval.
@@ -69,7 +71,7 @@ Whenever implementation needs an external account, API, LLM, agent framework, co
 Two separate frontends in two repositories; one authoritative backend/API and one operational data source. Public remains the current backend baseline. Admin-overlune is the separate Admin frontend. External services are optional replaceable adapters, not mandatory stack dependencies. See docs/31 for conflict resolution and docs/32 for the unified implementation prompt.
 
 ## Content distribution direction
-AVORLUNE's initial editorial territory is digital overload and the path from complexity to clarity and action. The systematic content taxonomy, audience segments, phased pillar priorities, evidence rules and TikTok learning loop are defined in [docs/34](docs/34-avorlune-content-system-architecture-and-tiktok-editorial-pillars.md). Voice-over and Genspark generation prompts are intentionally separate follow-on specifications.
+AVORLUNE's initial editorial territory is digital overload and the path from complexity to clarity and action. The systematic content taxonomy, audience segments, phased pillar priorities, evidence rules and TikTok learning loop are defined in [docs/34](docs/34-avorlune-content-system-architecture-and-tiktok-editorial-pillars.md). The first production-ready script, voice-over, storyboard, Genspark prompt, TikTok caption, QA checklist and reusable micro-system are defined in [docs/35](docs/35-avorlune-first-content-micro-system-and-genspark-master-prompt.md). Genspark generation and TikTok publishing remain manual actions requiring review; this repository commit does not claim either has been performed.
 
 ## Status
 Documentation only. These specifications do not claim that the agent runtime, Admin UI, API routes, integrations, database migrations, perimeter or deployment have been implemented. Implementation must begin with read-only audits of both repositories and current infrastructure, then reconcile the specifications with actual code.
