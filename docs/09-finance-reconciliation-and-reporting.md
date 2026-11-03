@@ -4,7 +4,7 @@
 - Customer Order Payments: deposit, balance, callback, gateway verification, manual payment evidence, reconciliation, refunds.
 - Cost Ledger: AI/provider usage, production labor, stock/licensing, delivery, and other project costs.
 - Margin report: collected customer cash and allocated costs, with clear distinction from quoted/projected revenue.
-- Platform Billing: separate disabled domain until doc 08 decisions are confirmed.
+- No Admin/platform billing domain exists; owner clarified the earlier reference was a typo.
 
 ## Customer payment lifecycle
 Pending → gateway initiated → callback received → server verification → settled / failed / expired / mismatch / under review. Use exact provider states mapped to canonical internal states. Never accept browser redirect as authoritative.
@@ -21,3 +21,7 @@ Daily/weekly/monthly collections, deposit-to-balance conversion, overdue balance
 
 ## Exports
 Bounded, permission-gated, audited, redacted by default. Export should be generated server-side and expire. Never expose private asset or payment secrets.
+
+
+## Scope clarification
+This workspace covers customer order payments and operating/project cost visibility only. Do not add Admin subscriptions, access fees, invoices or platform billing tabs.
