@@ -12,11 +12,14 @@ Customer directory, Customer 360, briefs, quotes, orders/projects, production qu
 ## Phase 3 — Customer finance
 Read customer order payments, payment milestones, callback exceptions, reconciliation, and cost ledger. Preserve 50/50 policy. Checkout remains gated by existing LIVE verification and owner approval.
 
-## Phase 4 — Super Admin governance
-Roles/permissions, sessions, audit, integration health, environment status, approval queue, safe feature controls.
+## Phase 4 — Agent read/analyze/plan
+Agent workspace, durable tasks, model gateway adapter, approved knowledge retrieval and read-only/prepare-only tool registry.
 
-## Phase 5 — Admin/platform billing (conditional)
-Only after owner defines Domain B in doc 08/14. No implementation by inference.
+## Phase 5 — Approval and controlled execution
+Policy engine, scoped approvals, idempotent Tool Gateway, task resume, audit evidence and emergency pause.
+
+## Phase 6 — Brand portfolio readiness and integrations
+AVORLUNE-only brand scope first; verified integrations and isolation tests before any additional brand is activated.
 
 ## Release gates
 - G0: documentation and repository/API audit complete.
