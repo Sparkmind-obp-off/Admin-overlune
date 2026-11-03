@@ -1,41 +1,17 @@
-# 08 — Separate Payment Domains
+# 08 — Payment Scope (Admin Payment Removed)
 
-## Purpose
-The phrase “payment Admin terpisah” requires its own explicit domain. It must not be interpreted as a change to customer checkout.
+## Owner clarification
+There is **no separate Admin payment**. The earlier reference to an Admin/platform payment was a typo. Do not implement or display Admin subscriptions, Admin access fees, Admin billing, a second payment provider, or a separate Admin payment ledger.
 
-## Domain A — Customer order payments (already defined)
+## Customer order payments only
 - Customer pays AVORLUNE for a quoted creative service/order.
-- Current policy: 50% deposit after quote acceptance and before production; 50% balance after preview/revisions and before final unwatermarked delivery.
-- Duitku POP is the planned/implemented gateway baseline in the Public repository; production checkout remains disabled pending LIVE authentication verification and explicit approval.
-- Payment is tied to an order/project, quote version, milestone, amount, currency, and verified gateway transaction.
+- Current business policy: 50% deposit after quote acceptance and before production; 50% balance after preview/revisions and before final unwatermarked delivery.
+- Duitku POP is the existing/planned customer gateway baseline in the Public repository. Production checkout remains OFF pending LIVE authentication verification and explicit owner approval.
+- Payment ties to order/project, quote version, milestone, amount, currency and verified gateway transaction.
 - Signed callback plus server-to-server verification; idempotent settlement; browser redirect is not proof of payment.
-- This domain is not an admin subscription or admin-access fee.
-
-## Domain B — Admin/platform payments (separate, not yet defined)
-Potential meanings are materially different and must not be merged:
-1. Admin pays a platform/vendor subscription or infrastructure invoice.
-2. Admin users pay AVORLUNE for access to an Admin/Super Admin product.
-3. AVORLUNE records operating expenses, vendor bills, or reimbursements.
-4. A separate internal finance/payment method is intended for owner/admin transactions.
-
-No option is selected by this document. Do not implement a checkout, recurring billing, subscription gate, or payment provider for Domain B until owner confirms the payer, payee, purpose, pricing model, currency, provider, and legal entity.
-
-## Hard separation requirements
-If Domain B is activated:
-- Separate tables/entities and ID namespace.
-- Separate merchant/provider account and credentials where the business relationship requires it.
-- Separate callback URL, signature verification, idempotency namespace, and reconciliation process.
-- Separate ledger, reports, access permissions, refunds, tax/accounting treatment, and retention.
-- No reusing customer order invoice IDs, payment status, quote IDs, or webhook handler.
-- Explicit environment separation; never test with live funds without approval.
-- No customer order may become paid because an Admin/platform payment succeeded, and vice versa.
 
 ## Admin UI treatment
-Show two clearly separated tabs:
-- Customer Order Payments — operational collection for customer orders.
-- Admin / Platform Billing — disabled/“Not configured” until Domain B is defined and implemented.
+Finance screens show customer order payments, customer payment exceptions, approved refund/adjustment workflows and operating cost visibility where supported by the existing data model. Do not show an Admin/platform billing tab or placeholder.
 
-Never show fake payment rows or imply a gateway is connected when it is not.
-
-## Approval checklist before implementation
-Confirm payer, payee, purpose, payment direction, one-time vs recurring, amount/pricing, currency, provider, merchant entity, invoice ownership, refunds/cancellations, tax/legal handling, who can initiate/approve/reconcile, and whether this payment changes Admin access.
+## Safety
+Do not change customer checkout, payment milestones, merchant credentials, callback handling or existing payment records as part of this documentation update. Do not initiate invoices, charges, refunds or live tests without explicit approval. Preserve all existing LIVE-only constraints and checkout-off status until its verification gate passes.
