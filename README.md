@@ -37,6 +37,8 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 | 28 | External provider profiles and connection governance |
 | 29 | Public video generation and production pipeline |
 | 30 | Public ↔ Admin control plane and shared capability contract |
+| 31 | Unified architecture decision and lean external stack policy (current tie-breaker) |
+| 32 | Unified implementation master system prompt (both repositories) |
 
 ## Start here
 1. [Product & architecture](docs/00-product-and-architecture-blueprint.md)
@@ -53,6 +55,11 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 12. [External provider profiles](docs/28-external-provider-profiles-and-connection-governance.md)
 13. [Video generation pipeline](docs/29-public-video-generation-and-production-pipeline.md)
 14. [Public ↔ Admin control contract](docs/30-public-admin-control-plane-and-shared-capability-contract.md)
+15. [Unified architecture decision & lean stack policy](docs/31-unified-architecture-decision-and-lean-external-stack-policy.md)
+16. [Unified implementation master system prompt](docs/32-unified-implementation-master-system-prompt.md)
+
+## Current owner direction
+Two separate frontends in two repositories; one authoritative backend/API and one operational data source. Public remains the current backend baseline. Admin-overlune is the separate Admin frontend. External services are optional replaceable adapters, not mandatory stack dependencies. See docs/31 for conflict resolution and docs/32 for the unified implementation prompt.
 
 ## Status
 Documentation only. These specifications do not claim that the agent runtime, Admin UI, API routes, integrations, database migrations, perimeter or deployment have been implemented. Implementation must begin with read-only audits of both repositories and current infrastructure, then reconcile the specifications with actual code.
