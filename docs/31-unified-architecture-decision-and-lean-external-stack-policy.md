@@ -45,7 +45,7 @@ Default mode is read → analyze → propose → prepare. Low-risk reversible ac
 Build only the durable core. Prefer the current Cloudflare-first stack already in the Public repository (TypeScript, React/Vite, Hono/Pages Functions, D1, private R2 when approved). Reuse existing components and dependencies where sound.
 
 External services are optional adapters, not architectural foundations:
-- LLM/model providers: choose by task, quality, latency, data policy, availability and total cost.
+- **LLM/model provider decision:** GroqCloud / Groq API is the owner-selected primary and only initial LLM provider. Implement it behind a provider-neutral server-side adapter. Do not add OpenAI, xAI/Grok, Anthropic, Gemini, OpenRouter or another LLM fallback unless the owner explicitly changes this decision. Account connection, API key configuration, paid usage and production activation remain separate approval gates.
 - Agent orchestration frameworks (e.g. CrewAI or alternatives): evaluate only if they materially simplify durable multi-agent workflows; do not add a framework just for branding.
 - Research/search, code intelligence, observability, email, chat, media/video/image generation and scheduling providers: add only for a concrete approved use case.
 - Provider/model routing must be provider-neutral and replaceable. Keep policy, identity, business logic, state and audit inside AVORLUNE's backend.
