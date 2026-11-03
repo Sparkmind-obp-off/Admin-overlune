@@ -15,7 +15,7 @@ Public/customer and Admin views must operate on the same canonical customer, off
 - Support ticket and communication event.
 - Admin principal, role, permission grant, session.
 - Audit event and approval record.
-- Platform billing account/invoice/payment only if the owner confirms this separate domain.
+- Brand, agent task, agent step, tool definition, integration scope, approval request, agent policy and agent audit evidence (only where required by the approved design).
 
 ## Ownership rules
 - Customer owns customer-visible profile and brief data, subject to policy.
@@ -30,3 +30,7 @@ Use explicit tenant/workspace scope only if multi-tenant product operation is in
 
 ## Migration
 All schema changes are additive where possible. Back up and verify production D1 before migrations. Never drop, truncate, reset, or recreate production D1 to simplify development. Use synthetic local/staging fixtures and tested rollback/forward recovery.
+
+
+## Agent and brand ownership
+Agent tasks, steps, approvals, tool definitions and policies are internal control-plane records. Brand-owned records must carry or inherit a verifiable brand scope. AVORLUNE remains the only active brand in phase 1. Do not create a separate Admin payment model; it does not exist.
