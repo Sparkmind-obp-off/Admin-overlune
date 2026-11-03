@@ -13,7 +13,7 @@
 - Payment callback/reconciliation exceptions.
 
 ## Financial metrics
-Separate:
+Track customer order finance and operating costs only:
 1. Gross customer order value.
 2. Customer deposits received.
 3. Customer balances received.
@@ -21,7 +21,7 @@ Separate:
 5. Net customer collections.
 6. Production/provider costs.
 7. Gross contribution and margin.
-8. Admin/platform billing revenue or expense (only after its domain is defined).
+8. No Admin/platform billing metric exists; this domain was removed by owner clarification.
 
 Never label order value as cash received. Do not include unpaid quotes as revenue. Recognize cash and operational milestones according to explicit accounting policy; dashboard figures are operational, not statutory accounts.
 
