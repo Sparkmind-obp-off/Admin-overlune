@@ -39,6 +39,7 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 | 30 | Public ↔ Admin control plane and shared capability contract |
 | 31 | Unified architecture decision and lean external stack policy (current tie-breaker) |
 | 32 | Unified implementation master system prompt (both repositories) |
+| 33 | External stack and provider requirements register |
 
 ## Start here
 1. [Product & architecture](docs/00-product-and-architecture-blueprint.md)
@@ -57,6 +58,10 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 14. [Public ↔ Admin control contract](docs/30-public-admin-control-plane-and-shared-capability-contract.md)
 15. [Unified architecture decision & lean stack policy](docs/31-unified-architecture-decision-and-lean-external-stack-policy.md)
 16. [Unified implementation master system prompt](docs/32-unified-implementation-master-system-prompt.md)
+17. [External stack & provider requirements register](docs/33-external-stack-and-provider-requirements-register.md)
+
+## Provider request process
+Whenever implementation needs an external account, API, LLM, agent framework, coding agent, search, chat, media, monitoring or automation provider, record the exact need and owner action in [docs/33](docs/33-external-stack-and-provider-requirements-register.md). Investigation is allowed; connecting accounts, adding credentials, paid usage and production activation still require explicit approval.
 
 ## Current owner direction
 Two separate frontends in two repositories; one authoritative backend/API and one operational data source. Public remains the current backend baseline. Admin-overlune is the separate Admin frontend. External services are optional replaceable adapters, not mandatory stack dependencies. See docs/31 for conflict resolution and docs/32 for the unified implementation prompt.
