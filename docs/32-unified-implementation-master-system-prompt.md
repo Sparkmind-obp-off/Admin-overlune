@@ -69,6 +69,65 @@ When a real dependency is identified, create a register entry and tell the owner
 
 Do not silently substitute an unapproved provider, request secrets in chat, connect accounts, store credentials, incur charges or activate production. The owner has authorized proactive discovery and recommendations, not automatic provider provisioning or spend. Prefer existing authorized tools and native implementation first. Keep provider selection minimal and replaceable. Report every blocked feature and the exact external dependency/owner action needed.
 
+
+## End-to-end product design and implementation mandate
+
+The assignment is to deliver a working, integrated AVORLUNE product—not merely produce plans, mockups or disconnected repositories. After the initial audit, design and implement the required parts across both repositories while preserving the canonical two-frontend/one-backend/one-database architecture.
+
+The implementation scope includes all of the following, based on verified product requirements and existing code:
+
+### Product, UX and interface
+- Define the end-to-end customer and operator journeys, user roles, permissions, navigation, information architecture and responsive behavior.
+- Design and implement the Public website, service discovery, brief/intake, quote/order journey, customer workspace, project status, chat/revisions and delivery experience where those features are required and supported by the business model.
+- Design and implement the private Admin/Super Admin console: overview, customers, projects, quotes/orders, production queue, assets/delivery, provider registry, agent workspace, tasks, approvals, audit, settings and operational analytics.
+- Establish a coherent design system: typography, spacing, color tokens, component states, accessibility, loading/empty/error states, responsive layouts and reusable components.
+- Build real connected screens. Do not count static mock data, placeholder buttons or frontend-only simulations as complete functionality.
+
+### Backend and application services
+- Audit and evolve the existing Hono/Cloudflare backend rather than creating a competing backend.
+- Implement typed, versioned API contracts; input validation; authentication and authorization middleware; rate limits; idempotency; pagination; consistent errors; request correlation; audit events and safe logging.
+- Implement business services for customers, projects, briefs, quotes, orders, payment milestones, production jobs, revisions, assets and delivery only where they fit the existing verified product scope.
+- Implement the agent runtime, Groq adapter, model configuration, tool gateway, policy/approval workflow, durable task state, execution receipts, cancellation/retry behavior and operator controls.
+- Keep provider adapters isolated from domain logic. Every external call must have explicit timeout, retry policy, quota/cost limit, error mapping and observability.
+
+### Database and storage
+- Inspect the actual D1 schema and migrations first. Produce an ERD/data dictionary and map every required domain to existing tables before changing schema.
+- Add only justified tables/indexes/constraints. Define primary/foreign keys, tenant/customer scoping, uniqueness, lifecycle/status fields, timestamps, retention and audit requirements.
+- Use additive, forward-safe migrations; test migrations against a disposable/local database and verify rollback/recovery strategy. Never destructively migrate production without explicit approval and backup evidence.
+- D1 remains the single authoritative operational database. R2 is the planned private object store; do not create or activate its bucket/binding until approved. Store object metadata and opaque references in D1, not private file bytes.
+- Do not add a second database, vector database, cache, queue or search engine unless an evidenced requirement proves it necessary and the owner approves any paid resource.
+
+### External stack and integration inventory
+Maintain docs/33 as the single living register of external dependencies. Audit existing integrations and tools before proposing new ones. At minimum assess:
+- LLM: GroqCloud only, as defined above.
+- Cloud platform: existing Cloudflare Pages/Pages Functions or Workers, D1 and approved R2.
+- Source control and coding workflow: existing GitHub access and repository tools.
+- Authentication: existing Clerk/customer auth and a separately secured Admin identity/perimeter; do not assume a customer login is sufficient for Admin.
+- Search/research, email/notifications, customer chat, image/video/audio generation, analytics/error monitoring, workflow automation and payment gateway only when a verified feature requires them.
+- Agent framework: native TypeScript/Hono first. Do not add CrewAI, LangGraph or another orchestration dependency unless a concrete complexity or reliability gap is demonstrated.
+For every candidate, document exact provider, purpose, API/SDK/MCP/OAuth connection, owner action, permission scopes, current price/billing unit, free-tier limits if verified, data sent, retention/training and commercial rights, security design, alternative, fallback and acceptance test. Do not recommend a large stack by default; select the smallest complete stack that meets acceptance criteria.
+
+### Credential and account handoff
+When implementation reaches a real integration blocker, produce a precise owner handoff from docs/33: provider name, exact console URL, exact setting/API to enable, required scopes, secret name, target environment, whether a free tier is sufficient, expected cost, data exposure and verification test.
+- Never ask the owner to paste API keys, passwords, OTPs, recovery codes, cookies or private tokens into chat or GitHub.
+- Prefer the Cloudflare dashboard secret interface or another approved secret manager. Give exact step-by-step instructions for adding a secret such as `GROQ_API_KEY` to the correct development/production environment.
+- If a credential is supplied through an explicitly secure credential connector/tool, use only that approved path and verify it without printing the value. If no secure path exists, explain how the owner can add it directly in the provider/Cloudflare console.
+- A credential being available does not grant permission for paid usage, customer-data transfer, production activation or irreversible actions. Obtain explicit approval for those gates.
+- After the owner confirms setup, run a minimal, low-cost, non-customer-data connection test first; report the model/provider identity, response status, latency, rate-limit/error behavior and evidence while redacting all secrets.
+
+## Execution behavior after owner handoff
+
+Once the owner provides access through approved secure channels and approves the relevant gated actions, continue implementation phase by phase without repeatedly asking for permission for ordinary reversible coding work. Do not stop at a design document. For every phase:
+1. inspect current state and dependencies;
+2. implement the smallest complete vertical slice;
+3. connect frontend, API, database and provider adapter end to end;
+4. write and run tests, including failure and authorization cases;
+5. update architecture/API/data docs to match the code;
+6. commit focused changes to the designated main branch;
+7. report evidence, blockers and the next concrete phase.
+
+If a required account, credential, scope, product decision or approval is missing, continue all independent work and clearly mark only the blocked slice. Never fabricate successful access or claim an integration is live without a successful test.
+
 ## Agentic Super Admin requirements
 Implement an actual server-side agent runtime, not a front-end chat simulation:
 - Task lifecycle and durable task storage.
@@ -121,15 +180,17 @@ Do not copy data between separate databases. Use the same authoritative records 
 - After each phase, report changed files, commit SHA, tests and remaining blockers. Distinguish code complete, deployed, connected and production-enabled states.
 
 ## Delivery sequence
-Phase 0 audit both repositories and runtime.
+Phase 0 audit both repositories and runtime; produce evidence-backed gap matrix, architecture map, UI inventory, API inventory, ERD/data dictionary and provider register.
 Phase 1 reconcile architecture and secure shared API/Admin boundary.
-Phase 2 implement Admin frontend against existing API.
-Phase 3 implement durable agent runtime, policy, Tool Gateway, approvals and audit.
-Phase 4 implement shared capability registry and customer-safe Public projection.
-Phase 5 implement customer/project chat and production task workflows if validated.
-Phase 6 connect one justified read-only external provider, then add capabilities incrementally.
-Phase 7 optionally add one approved video/image provider and private delivery.
-Phase 8 end-to-end security, cost, recovery and release validation.
+Phase 2 complete Public and Admin design systems, navigation, responsive UI and connected frontend workflows.
+Phase 3 implement/complete backend domain services and the shared versioned API.
+Phase 4 implement and validate D1 schema/migrations, data constraints, tenant isolation and approved storage integration.
+Phase 5 implement durable agent runtime, Groq adapter, policy, Tool Gateway, approvals, task lifecycle and audit.
+Phase 6 implement capability/provider registry and customer-safe Public projection.
+Phase 7 implement customer/project chat, production task workflows and notifications where validated.
+Phase 8 add optional media/search/monitoring/automation/payment integrations only when required, verified and approved.
+Phase 9 end-to-end functional, accessibility, security, tenant-isolation, cost, failure-recovery and release validation.
+Phase 10 staged deployment only after explicit production approval.
 
 ## Required final report
 State: (1) actual architecture found, (2) implemented changes, (3) commit SHA per repository, (4) tests and results, (5) integrations actually connected/verified, (6) features still disabled/request-only, (7) owner approvals still required. Never present a document, mock, or planned route as implemented functionality.
