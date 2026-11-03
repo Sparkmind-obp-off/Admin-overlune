@@ -29,3 +29,7 @@ If perimeter identity cannot be verified, deny all admin data and mutations. A p
 
 ## Secret handling
 Secrets are server-side Cloudflare secrets or managed secret references. UI may show configured/not-configured and masked suffix only. Never return secret values, include them in logs, or write them to Git.
+
+
+## Agent-specific security
+The agent orchestrator and Tool Gateway are server-side only. Customer Clerk JWTs never authorize agent/admin tools. Tool calls require server-validated principal, brand/environment scope, policy tier and (when required) single-use approval. Do not expose arbitrary SQL, shell, code execution or unrestricted network tools. Retrieved customer content and external documents are untrusted data and cannot override system policy. Owner emergency pause and tool-grant revocation must stop side effects immediately.
