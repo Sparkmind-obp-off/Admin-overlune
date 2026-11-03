@@ -43,7 +43,7 @@ Do not ask for passwords, OTPs, session cookies or raw secrets in chat. Provide 
 
 | Capability | Candidate category/examples | Selection gate |
 |---|---|---|
-| LLM inference and routing | OpenAI API, xAI/Grok API, Anthropic API, Google Gemini API, OpenRouter | Compare task quality, tool calling, structured output, privacy, price and availability; select only the minimum viable route |
+| LLM inference and routing | **GroqCloud / Groq API — owner-selected primary and only initial LLM** | Implement Groq adapter first; verify active production model, tool calling/structured output support, current pricing, rate limits and data terms. No alternate LLM without new owner approval |
 | Agent orchestration | Native Hono/TypeScript orchestrator first; CrewAI or LangGraph only if durable multi-agent workflows justify them | Must demonstrate measurable complexity reduction; no framework by default |
 | Coding/repository assistance | Existing GitHub tools, approved coding agent or IDE agent | Repository permissions, reviewability, branch/commit controls and test evidence |
 | Search/research | Existing web/search capability or a verified search API | Need freshness, citation quality, licensing and predictable cost |
@@ -57,7 +57,7 @@ Examples above are discovery candidates only. They are not endorsements, connect
 
 ## Initial requests to investigate during audit
 These are questions to resolve from the actual code, not pre-approved purchases:
-1. **Primary LLM route:** determine whether an existing authorized model connection is available and sufficient for Admin agent planning/tool use. If not, submit a provider request with model, API scope, budget and data handling.
+1. **Primary LLM route — GroqCloud (owner-selected):** use Groq as the only initial LLM route. Verify whether a GroqCloud account/API key already exists and whether the selected active production model supports required tool calling and structured outputs. If no authorized connection exists, request the owner to create/enable GroqCloud API access and configure `GROQ_API_KEY` through the approved Cloudflare secret workflow. Do not ask for the raw key in chat. Confirm current model pricing, rate limits, retention/training terms and budget before sending non-test/customer data or enabling production usage. No fallback LLM unless separately approved.
 2. **Agent orchestration:** begin with a small native server-side orchestrator. Evaluate CrewAI/LangGraph only if the audit finds a real need for durable multi-agent delegation, recovery or tracing that native code cannot economically satisfy.
 3. **Coding agent:** inspect the current GitHub integration and available repository workflow first. Request a coding-agent product only if implementation throughput or safe test execution is materially blocked.
 4. **Research/search:** use existing search tools first. Add a paid search API only if production workflows require a documented search capability unavailable in the current environment.
@@ -93,3 +93,20 @@ At every milestone, report:
 - spend limits and remaining risks.
 
 A provider must never be described as integrated merely because its name appears in this register.
+
+
+## Owner-selected provider decision — GROQ-LLM-001
+- **Request ID / status:** GROQ-LLM-001 / selected by owner; connection and verification pending.
+- **Capability:** Primary LLM inference for Admin agent reasoning, planning, structured responses and tool-call proposals.
+- **Provider/software:** GroqCloud / Groq Console / Groq API.
+- **Why selected:** Explicit owner direction; use one provider initially to keep integration lean.
+- **What it will do:** Serve model inference through a server-side provider adapter. It does not authorize Groq to execute AVORLUNE tools; all tool calls pass through the internal Tool Gateway and policy engine.
+- **Integration surface:** HTTPS API, OpenAI-compatible base URL `https://api.groq.com/openai/v1`; official API reference https://console.groq.com/docs/api-reference.
+- **Required owner action:** Confirm/create GroqCloud account, enable API access, create an API key, and add it as `GROQ_API_KEY` using the approved Cloudflare secret workflow for the correct environment. Do not paste the key into chat or Git.
+- **Estimated cost:** Depends on selected model and token volume; must be checked against the live model/pricing page at implementation time. Do not assume free unlimited inference. Official model/pricing catalogue: https://console.groq.com/docs/models.
+- **Data exposure:** Prompts and context sent for inference may include operational records. Minimize/redact personal and customer data; review Groq's current data controls/retention terms before any sensitive/customer data is transmitted.
+- **Security/permissions:** Server-side secret only; model allowlist; per-task token/cost budgets; rate-limit handling; audit metadata without raw prompt secrets; no direct provider access from either frontend.
+- **Alternatives:** Manual/no-LLM workflow is the fallback. Another LLM provider requires a separate owner decision.
+- **Fallback:** Queue/retry within bounded limits or require manual operation; never silently switch provider.
+- **Acceptance test:** Server-side authenticated test request; model ID verified from live catalogue; tool-call/structured-output tests for selected model; budget/rate-limit/error tests; confirm key absent from client bundle, database plaintext, logs and Git.
+- **Approval needed:** Owner must configure the key securely and approve any paid usage, customer-data transmission and production activation separately.
