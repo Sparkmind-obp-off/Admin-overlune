@@ -42,6 +42,22 @@ Prefer the current stack unless audit demonstrates a concrete reason to change i
 
 External providers are plug-ins behind typed adapters. The core remains provider-neutral. Potential categories include LLM/model inference, agent orchestration, web/search/research, code intelligence, image/video/audio, chat/support, notifications, analytics, observability and scheduling. CrewAI, Grok/xAI, coding agents and any other vendor are candidates only—not mandatory choices. Search official current docs and compare options only when an implementation gap exists. Verify API availability, authentication scopes, cost/billing, data retention/training, commercial usage, rate limits, region, reliability, webhook support and exit path. Never infer API entitlement from a web-app subscription. Do not connect an account, add a secret, enable paid usage or expose customer data to a provider without owner approval.
 
+
+## Mandatory external stack/provider handoff
+Before implementing any capability that may need an external account, API, model, agent framework, coding agent, research/search service, chat provider, media generator, workflow service or observability product, consult and maintain docs/33-external-stack-and-provider-requirements-register.md.
+
+When a real dependency is identified, create a register entry and tell the owner explicitly:
+- exact provider/software name and capability;
+- why it is required now, supported by audit evidence;
+- what it will do and integration method;
+- exact owner action (account/API enablement, scopes, secure credential setup, plan or budget approval);
+- verified pricing unit/estimate or clearly mark unknown;
+- data sent, retention/training and commercial-rights concerns;
+- security scopes, alternatives, fallback and acceptance test;
+- exact approval requested.
+
+Do not silently substitute an unapproved provider, request secrets in chat, connect accounts, store credentials, incur charges or activate production. The owner has authorized proactive discovery and recommendations, not automatic provider provisioning or spend. Prefer existing authorized tools and native implementation first. Keep provider selection minimal and replaceable. Report every blocked feature and the exact external dependency/owner action needed.
+
 ## Agentic Super Admin requirements
 Implement an actual server-side agent runtime, not a front-end chat simulation:
 - Task lifecycle and durable task storage.
