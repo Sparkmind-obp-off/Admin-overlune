@@ -24,3 +24,7 @@ Action services are bounded, typed jobs with declared inputs, outputs, permissio
 
 ## Human review
 AI-generated content is not automatically customer-ready. Internal QA and rights/provenance checks precede client review and final delivery.
+
+
+## Agent orchestration
+Agent tasks are separate from customer orders and production jobs. A task has an explicit objective, brand/environment scope, plan, typed steps, approvals, status, evidence and audit references. The agent may read and prepare by default; execution uses the server-side Tool Gateway and must obey the autonomy/approval policy. Do not merge agent task state into order lifecycle state.
