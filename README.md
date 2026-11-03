@@ -43,6 +43,7 @@ Private AI-agentic control plane for AVORLUNE and its authorized brand portfolio
 | 34 | AVORLUNE content system architecture and TikTok editorial pillars |
 | 35 | First TikTok content micro-system and Genspark master prompt |
 | 36 | First AVORLUNE brand-awareness UGC video: creative brief, hooks, script, storyboard, Genspark scene prompts, editing, QC and publishing package |\n| 37 | AVORLUNE Media Studio service portfolio and Genspark capability map: film, drama, ads, social, image, audio, motion, 3D and interactive |\n| 38 | Media production operating system: project archive, Story Bible, production gates, account handoff, continuity and credit controls |\n| 39 | Media service commercialization, quote framework, pilot cost study, distribution packages and rights policy |
+| 40 | OVERLOAD — Pesan dari Besok: Indonesian live-action 8-episode series bible, complete screenplays, final storyboards, shot-level Genspark prompts and production/release package |
 
 ## Start here
 1. [Product & architecture](docs/00-product-and-architecture-blueprint.md)
