@@ -6,7 +6,7 @@
 - Search, filters, sorting, pagination, empty/error/loading states behave predictably.
 - Customer-visible and internal events remain separated.
 - Financial summaries distinguish quoted, due, paid, refunded, and cost amounts.
-- Domain B payment UI stays disabled until approved configuration exists.
+- No Admin/platform billing UI or data model exists.
 
 ## Security acceptance
 - Direct API call without valid perimeter identity is denied.
@@ -24,7 +24,7 @@
 - Duplicate callbacks settle once.
 - Wrong amount/currency/merchant/order reference is rejected or held for review.
 - Browser redirect cannot mark an order paid.
-- Customer payment and Admin/platform payment identifiers, callbacks, and ledgers cannot cross-settle.
+- Customer payment identifiers, callbacks and ledger remain isolated from Admin/agent task records.
 - Refund and manual adjustments require permissions, reasons, and audit.
 
 ## Operational acceptance
@@ -39,3 +39,14 @@ Unit tests for permissions, transitions, money arithmetic, schemas, and mapping;
 
 ## Release evidence
 A release is not accepted based on screenshots alone. Provide test output, contract compatibility, deployed URL, perimeter allow/deny evidence, environment binding evidence, migration status, and rollback plan.
+
+
+## Agent acceptance
+- Agent tasks persist and resume without duplicate side effects.
+- Read/prepare actions work with no mutation authority.
+- Tool schema, brand scope, environment, autonomy tier and human grants are checked server-side.
+- Consequential actions require fresh single-use approval bound to exact inputs.
+- Prompt injection in customer content cannot override policy or trigger tools.
+- Emergency pause blocks side-effect tools; agent cannot disable it.
+- Every agent result includes verifiable evidence and honest failure/partial status.
+- Cross-brand access is denied by default; AVORLUNE-only phase 1 passes isolation tests.
