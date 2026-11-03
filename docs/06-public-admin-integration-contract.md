@@ -12,7 +12,8 @@ Public and Admin are separate frontend applications. They integrate through a ve
 - `/admin/briefs`, `/admin/quotes`, `/admin/orders`, `/admin/projects`.
 - `/admin/production/jobs`, `/admin/action-runs`.
 - `/admin/assets`, `/admin/deliveries`.
-- `/admin/customer-payments` and a separate future `/admin/platform-billing`.
+- `/admin/customer-payments`.
+- `/admin/agent/tasks`, `/admin/agent/approvals`, `/admin/agent/tools`, `/admin/agent/policies` (proposed; only after runtime design and contract review).
 - `/admin/support`, `/admin/audit`, `/admin/settings`.
 
 These are logical resource groups, not a claim that routes currently exist. First inventory the actual API in Avorlune and map each screen to existing routes. Add routes only after contract review.
@@ -41,3 +42,7 @@ Use additive, backward-compatible changes where possible. Breaking changes requi
 
 ## Security
 Admin API must independently authenticate trusted admin principal and authorize each action. CORS is not authentication. Hiding routes in UI is not authorization.
+
+
+## Agent boundary
+Agent orchestration, policy and tool execution are privileged server-side capabilities. The Admin frontend submits user intent and displays plans/results; it does not invoke providers or domain mutations directly. All agent operations must call the authoritative API/Tool Gateway with scoped identity and audit context.
