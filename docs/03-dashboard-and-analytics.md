@@ -21,7 +21,6 @@ Track customer order finance and operating costs only:
 5. Net customer collections.
 6. Production/provider costs.
 7. Gross contribution and margin.
-8. No Admin/platform billing metric exists; this domain was removed by owner clarification.
 
 Never label order value as cash received. Do not include unpaid quotes as revenue. Recognize cash and operational milestones according to explicit accounting policy; dashboard figures are operational, not statutory accounts.
 
